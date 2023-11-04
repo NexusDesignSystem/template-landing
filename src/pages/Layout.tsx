@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 
 const Layout = (props: PropsWithChildren) => {
   return (
-    <div className={`w-screen min-h-screen`}>
+    <div className={`w-full min-h-screen`}>
       <Navbar />
       {props.children}
     </div>
