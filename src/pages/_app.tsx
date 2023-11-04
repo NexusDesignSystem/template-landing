@@ -1,6 +1,12 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+
+import { NexusUIProvider } from '@nexus-ds/react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <NexusUIProvider>
+      <Component {...pageProps} />
+    </NexusUIProvider>
+  );
 }
