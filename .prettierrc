@@ -7,7 +7,7 @@
   "singleAttributePerLine": true,
   "semi": false,
   "trailingComma": "none",
-  "bracketSameLine": true,
+  "bracketSameLine": false,
   "proseWrap": "always",
   "arrowParens": "avoid"
 }
