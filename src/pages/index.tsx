@@ -1,4 +1,4 @@
-import { Avatar, Button, Chip, ScrollShadow } from '@nexus-ds/react'
+import { Avatar, Button, Chip } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
 
 export default function Home() {

@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 
 import { NexusUIProvider } from '@nexus-ds/react'
-import Layout from './Layout'
+import Layout from './layout'
 
 const inter = Inter({
   subsets: ['latin'],
