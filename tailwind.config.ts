@@ -1,11 +1,9 @@
 import type { Config } from 'tailwindcss'
-import {nexusui} from '@nexus-ds/react'
+import { nexusui } from '@nexus-ds/react'
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nexus-ds/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
@@ -13,11 +11,24 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
-            'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+      }
+    }
   },
-  darkMode: "class",
-  plugins: [nexusui()],
+  darkMode: 'class',
+  plugins: [
+    nexusui({
+      defaultTheme: 'dark',
+      themes: {
+        dark: {
+          colors: {
+            background: {
+              DEFAULT: 'rgb(21, 24, 23)'
+            }
+          }
+        }
+      }
+    })
+  ]
 }
 export default config
