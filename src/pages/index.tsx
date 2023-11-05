@@ -1,4 +1,12 @@
-import { Avatar, Button, Chip, Image } from '@nexus-ds/react'
+import {
+  Card,
+  Avatar,
+  Button,
+  Chip,
+  Image,
+  CardHeader,
+  CardBody
+} from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
 
 // static assets
@@ -183,10 +191,12 @@ function LogoSection() {
 
 function FeaturesSection() {
   return (
-    <div className={`w-full p-8 flex flex-col items-center gap-8`}>
+    <div
+      className={`w-full md:w-3/4 p-8 m-auto flex flex-col items-center gap-8`}
+    >
       <h1 className={`text-6xl text-primary`}>Nexus Designer</h1>
       <h1 className={`text-5xl font-thin`}>thinks like a designer</h1>
-      <p className={`mt-4 mb-8 text-xl text-neutral-600 font-light`}>
+      <p className={`my-4 text-xl text-neutral-600 font-light`}>
         Talks like a designer. Works like a designer
       </p>
       <FeaturesGrid />
@@ -197,9 +207,36 @@ function FeaturesSection() {
 
 function FeaturesGrid() {
   return (
-    <div className={`grid`}>
-      <div></div>
+    <div
+      className={`my-8 md:my-16 sm:px-16 w-full grid grid-cols-1 md:grid-cols-2 gap-8`}
+    >
+      <FeatureCard wide />
+      <FeatureCard />
+      <FeatureCard />
+      <FeatureCard />
+      <FeatureCard />
     </div>
+  )
+}
+
+interface IFeatureCardProps {
+  wide?: boolean
+}
+
+function FeatureCard(props: IFeatureCardProps) {
+  return (
+    <Card className={`${props.wide ? 'md:col-span-2' : ''}`}>
+      <CardHeader className={`p-8 flex flex-col gap-4 items-center`}>
+        <h1 className={`text-2xl`}>Nuanced answers</h1>
+        <p className={`text-neutral-400 font-light`}>Nothing like a chatbot</p>
+      </CardHeader>
+      <CardBody className={`flex flex-col gap-4 items-center`}>
+        <Image
+          src={Logo1.src}
+          alt='Yummy baby'
+        />
+      </CardBody>
+    </Card>
   )
 }
 
