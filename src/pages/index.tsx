@@ -26,7 +26,10 @@ export default function Home() {
       <ReviewsSection />
       <ProductScreenshotSection />
       <LogoSection />
+      <hr className={`w-full border-neutral-800 my-16`} />
       <FeaturesSection />
+      <hr className={`w-full border-neutral-800 mt-4 mb-16`} />
+      <CallToAction />
     </>
   )
 }
@@ -184,7 +187,6 @@ function LogoSection() {
           />
         ))}
       </div>
-      <hr className={`w-full border-neutral-800 my-16`} />
     </div>
   )
 }
@@ -241,6 +243,78 @@ function FeatureCard(props: IFeatureCardProps) {
 }
 
 function FeaturesTimeline() {
-  // TODO
-  return <></>
+  const featureTimelineCards: IFeatureTimelineCardProps[] = [
+    {
+      iconPath: Logo3.src,
+      title: 'Accurate',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed vulputate mi. Morbi placerat eros at elit semper, vel placerat ante viverra.'
+    },
+    {
+      iconPath: Logo3.src,
+      title: 'Accurate',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed vulputate mi. Morbi placerat eros at elit semper, vel placerat ante viverra.'
+    }
+  ]
+
+  return (
+    <div
+      className={`w-full md:w-3/4 p-8 m-auto flex flex-col items-center gap-8`}
+    >
+      {featureTimelineCards.map((props, i) => (
+        <FeatureTimelineCard
+          key={i}
+          {...props}
+        />
+      ))}
+    </div>
+  )
+}
+
+interface IFeatureTimelineCardProps {
+  iconPath: string
+  title: string
+  content: string
+}
+
+function FeatureTimelineCard(props: IFeatureTimelineCardProps) {
+  return (
+    <div className={`w-full p-8 flex flex-col items-center gap-4`}>
+      <Image
+        src={props.iconPath}
+        isBlurred
+        isZoomed
+      />
+      <h1 className={`text-4xl font-light`}>{props.title}</h1>
+      <p className={`mt-4 md:w-2/3 text-center text-xl font-thin text-neutral`}>
+        {props.content}
+      </p>
+    </div>
+  )
+}
+
+function CallToAction() {
+  return (
+    <div
+      className={`w-3/4 md:w-1/2 m-auto pt-24 pb-48 flex flex-col gap-8 items-center`}
+    >
+      <h1
+        className={`text-6xl md:text-8xl text-primary font-light text-center`}
+      >
+        Data on demand
+      </h1>
+      <p className={`text-2xl text-neutral-400 font-thin text-center`}>
+        Get the answers you need, when it matters
+      </p>
+      <Button
+        radius='full'
+        variant='ghost'
+        color='primary'
+        size='lg'
+      >
+        Try Nexus Designer
+      </Button>
+    </div>
+  )
 }
