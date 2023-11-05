@@ -1,11 +1,12 @@
 import { Avatar, Button, Chip } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
+import type { PropsWithChildren } from 'react'
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <SampleQuestionsSection />
+      <ReviewsSection />
     </>
   )
 }
@@ -31,14 +32,14 @@ function HeroSection() {
   )
 }
 
-function SampleQuestionsSection() {
+function ReviewsSection() {
   return (
     <div
       className={`h-screen w-full p-4 flex flex-col gap-8 items-center justify-center`}
     >
-      <QuestionsStrip />
-      <QuestionsStrip direction={'right'} />
-      <QuestionsStrip />
+      <ReviewsStrip />
+      <ReviewsStrip direction={'right'} />
+      <ReviewsStrip />
     </div>
   )
 }
@@ -47,28 +48,28 @@ interface IQuestionsStripProps {
   direction?: 'left' | 'right'
 }
 
-function QuestionsStrip(props: IQuestionsStripProps) {
+function ReviewsStrip(props: IQuestionsStripProps) {
   const direction = props.direction ?? 'left'
 
-  const questions: IQuestionChipProps[] = [
+  const reviews: IReviewChipProps[] = [
     {
       thumbnail: 'foo',
-      question:
+      review:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry?'
     },
     {
       thumbnail: 'foo',
-      question:
+      review:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry?'
     },
     {
       thumbnail: 'foo',
-      question:
+      review:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry?'
     },
     {
       thumbnail: 'foo',
-      question:
+      review:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry?'
     }
   ]
@@ -81,28 +82,28 @@ function QuestionsStrip(props: IQuestionsStripProps) {
         after:right-0 after:h-full after:absolute after:w-16 after:bg-gradient-to-l after:from-background after:to-transparent after:z-10
      `}
     >
-      {questions.map((q, i) => (
-        <QuestionChip
+      {reviews.map((r, i) => (
+        <ReviewChip
           key={i}
-          {...q}
+          {...r}
         />
       ))}
     </Marquee>
   )
 }
 
-interface IQuestionChipProps {
+interface IReviewChipProps {
   thumbnail: String
-  question: String
+  review: String
 }
 
-function QuestionChip(props: IQuestionChipProps) {
+function ReviewChip(props: IReviewChipProps) {
   return (
     <Chip
       avatar={<Avatar />}
       className={'mx-4 p-8 bg-neutral-800'}
     >
-      <span className={'text-2xl font-extralight'}>{props.question}</span>
+      <span className={'text-2xl font-extralight'}>{props.review}</span>
     </Chip>
   )
 }
