@@ -18,6 +18,7 @@ export default function Home() {
       <ReviewsSection />
       <ProductScreenshotSection />
       <LogoSection />
+      <FeaturesSection />
     </>
   )
 }
@@ -178,4 +179,31 @@ function LogoSection() {
       <hr className={`w-full border-neutral-800 my-16`} />
     </div>
   )
+}
+
+function FeaturesSection() {
+  return (
+    <div className={`w-full p-8 flex flex-col items-center gap-8`}>
+      <h1 className={`text-6xl text-primary`}>Nexus Designer</h1>
+      <h1 className={`text-5xl font-thin`}>thinks like a designer</h1>
+      <p className={`mt-4 mb-8 text-xl text-neutral-600 font-light`}>
+        Talks like a designer. Works like a designer
+      </p>
+      <FeaturesGrid />
+      <FeaturesTimeline />
+    </div>
+  )
+}
+
+function FeaturesGrid() {
+  return (
+    <div className={`grid`}>
+      <div></div>
+    </div>
+  )
+}
+
+function FeaturesTimeline() {
+  // TODO
+  return <></>
 }
