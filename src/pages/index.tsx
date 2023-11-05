@@ -53,8 +53,10 @@ function HeroSection() {
       <div
         className={`w-full md:w-1/2 p-4 flex flex-col gap-8 items-center justify-center`}
       >
-        <h1 className={`text-6xl text-center`}>The AI design assistant</h1>
-        <p className={`text-xl text-foreground-300`}>
+        <h1 className={`text-6xl md:text-8xl font-light text-center`}>
+          The AI design assistant
+        </h1>
+        <p className={`text-2xl text-foreground-300`}>
           Get answers to all your design needs
         </p>
         <Button
@@ -172,7 +174,7 @@ function LogoSection() {
 
   return (
     <div className={`flex flex-col items-center gap-10 w-full p-8`}>
-      <p className={`text-xl font-light text-neutral-400`}>{title}</p>
+      <p className={`text-xl font-light text-foreground-400`}>{title}</p>
       <div
         className={`flex flex-row flex-wrap gap-8 items-center justify-around w-full md:w-1/2`}
       >
@@ -198,7 +200,7 @@ function FeaturesSection() {
     >
       <h1 className={`text-6xl text-primary`}>Nexus Designer</h1>
       <h1 className={`text-5xl font-thin`}>thinks like a designer</h1>
-      <p className={`my-4 text-xl text-neutral-600 font-light`}>
+      <p className={`my-4 text-xl text-foreground-600 font-light`}>
         Talks like a designer. Works like a designer
       </p>
       <FeaturesGrid />
@@ -230,7 +232,9 @@ function FeatureCard(props: IFeatureCardProps) {
     <Card className={`${props.wide ? 'md:col-span-2' : ''}`}>
       <CardHeader className={`p-8 flex flex-col gap-4 items-center`}>
         <h1 className={`text-2xl`}>Nuanced answers</h1>
-        <p className={`text-neutral-400 font-light`}>Nothing like a chatbot</p>
+        <p className={`text-foreground-500 font-light`}>
+          Nothing like a chatbot
+        </p>
       </CardHeader>
       <CardBody className={`flex flex-col gap-4 items-center`}>
         <Image
@@ -287,7 +291,9 @@ function FeatureTimelineCard(props: IFeatureTimelineCardProps) {
         isZoomed
       />
       <h1 className={`text-4xl font-light`}>{props.title}</h1>
-      <p className={`mt-4 md:w-2/3 text-center text-xl font-thin text-neutral`}>
+      <p
+        className={`mt-4 md:w-2/3 text-center text-xl font-light text-foreground-400`}
+      >
         {props.content}
       </p>
     </div>
@@ -304,7 +310,7 @@ function CallToAction() {
       >
         Data on demand
       </h1>
-      <p className={`text-2xl text-neutral-400 font-thin text-center`}>
+      <p className={`text-2xl text-foreground-400 font-light text-center`}>
         Get the answers you need, when it matters
       </p>
       <Button
