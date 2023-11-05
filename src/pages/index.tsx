@@ -1,7 +1,14 @@
 import { Avatar, Button, Chip, Image } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
 
+// static assets
 import Screenshot from '@/assets/img/screenshot.jpg'
+import Logo1 from '@/assets/img/logo/1.png'
+import Logo2 from '@/assets/img/logo/2.png'
+import Logo3 from '@/assets/img/logo/3.png'
+import Logo4 from '@/assets/img/logo/4.png'
+import Logo5 from '@/assets/img/logo/5.png'
+import Logo6 from '@/assets/img/logo/6.png'
 
 export default function Home() {
   return (
@@ -9,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <ReviewsSection />
       <ProductScreenshotSection />
+      <LogoSection />
     </>
   )
 }
@@ -119,6 +127,39 @@ function ProductScreenshotSection() {
         alt='Product screenshot'
         isBlurred
       />
+    </div>
+  )
+}
+
+function LogoSection() {
+  const title = 'Works with your datastack'
+  const logoImgSrcs = [
+    Logo1.src,
+    Logo2.src,
+    Logo3.src,
+    Logo4.src,
+    Logo5.src,
+    Logo6.src
+  ]
+
+  return (
+    <div className={`flex flex-col items-center gap-10 w-full p-8`}>
+      <p className={`text-xl font-light text-neutral-400`}>{title}</p>
+      <div
+        className={`flex flex-row flex-wrap gap-8 items-center justify-around w-full md:w-1/2`}
+      >
+        {logoImgSrcs.map((logoImgSrc, i) => (
+          <Image
+            key={i}
+            src={logoImgSrc}
+            width={70}
+            alt={`This is a brand logo`}
+            isBlurred
+            isZoomed
+          />
+        ))}
+      </div>
+      <hr className={`w-full border-neutral-800 my-16`} />
     </div>
   )
 }
