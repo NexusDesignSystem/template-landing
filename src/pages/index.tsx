@@ -8,6 +8,7 @@ import {
   CardBody
 } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 // static assets
 import Landing from '@/assets/img/landing.jpg'
@@ -35,23 +36,30 @@ export default function Home() {
 }
 
 function HeroSection() {
+  const { scrollYProgress } = useScroll({})
+  const progress = useTransform(scrollYProgress, [0, 1 / 6], [1, 0])
+
   return (
     <div
-      className={`h-screen -mt-16 w-full flex flex-col items-center justify-center`}
+      className={`sticky top-0 h-screen -mt-16 w-full flex flex-col items-center justify-center`}
     >
       {/*Background image*/}
-      <div
+      <motion.div
         className={`absolute w-full h-full top-0 left-0 -z-10`}
         style={{
           backgroundImage: `url(${Landing.src})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          filter: 'brightness(0.2)'
+          filter: 'brightness(0.2)',
+          opacity: progress
         }}
-      ></div>
+      ></motion.div>
 
-      <div
+      <motion.div
         className={`w-full md:w-1/2 p-4 flex flex-col gap-8 items-center justify-center`}
+        style={{
+          scale: progress
+        }}
       >
         <h1 className={`text-6xl md:text-8xl font-light text-center`}>
           The AI design assistant
@@ -67,7 +75,7 @@ function HeroSection() {
         >
           Try Nexus Designer
         </Button>
-      </div>
+      </motion.div>
     </div>
   )
 }
@@ -75,7 +83,7 @@ function HeroSection() {
 function ReviewsSection() {
   return (
     <div
-      className={`h-screen w-full p-4 flex flex-col gap-8 items-center justify-center`}
+      className={`sticky top-0 h-screen w-full p-4 flex flex-col gap-8 items-center justify-center`}
     >
       <ReviewsStrip />
       <ReviewsStrip direction={'right'} />
@@ -150,7 +158,9 @@ function ReviewChip(props: IReviewChipProps) {
 
 function ProductScreenshotSection() {
   return (
-    <div className={`w-full h-screen p-8 flex items-center justify-center`}>
+    <div
+      className={`sticky top-0 w-full h-screen p-8 flex items-center justify-center`}
+    >
       <Image
         src={Screenshot.src}
         width={1000}
