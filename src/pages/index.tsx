@@ -1,12 +1,15 @@
-import { Avatar, Button, Chip } from '@nexus-ds/react'
+import { Avatar, Button, Chip, Image } from '@nexus-ds/react'
+import NextImage from 'next/image'
 import Marquee from 'react-fast-marquee'
-import type { PropsWithChildren } from 'react'
+
+import Screenshot from '@/assets/img/screenshot.jpg'
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <ReviewsSection />
+      <ProductScreenshotSection />
     </>
   )
 }
@@ -105,5 +108,17 @@ function ReviewChip(props: IReviewChipProps) {
     >
       <span className={'text-2xl font-extralight'}>{props.review}</span>
     </Chip>
+  )
+}
+
+function ProductScreenshotSection() {
+  return (
+    <div className={`w-full h-screen p-8 flex items-center justify-center`}>
+      <Image
+        src={Screenshot.src}
+        alt='Product screenshot'
+        isBlurred
+      />
+    </div>
   )
 }
