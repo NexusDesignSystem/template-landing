@@ -1,5 +1,4 @@
 import { Avatar, Button, Chip, Image } from '@nexus-ds/react'
-import NextImage from 'next/image'
 import Marquee from 'react-fast-marquee'
 
 import Screenshot from '@/assets/img/screenshot.jpg'
@@ -116,6 +115,7 @@ function ProductScreenshotSection() {
     <div className={`w-full h-screen p-8 flex items-center justify-center`}>
       <Image
         src={Screenshot.src}
+        width={1000}
         alt='Product screenshot'
         isBlurred
       />
