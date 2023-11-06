@@ -1,3 +1,4 @@
+import { type RefObject, useEffect, useRef, useState } from 'react'
 import {
   Card,
   Avatar,
@@ -8,7 +9,7 @@ import {
   CardBody
 } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, type Transition, useScroll } from 'framer-motion'
 
 // static assets
 import Landing from '@/assets/img/landing.jpg'
@@ -36,11 +37,16 @@ export default function Home() {
 }
 
 function HeroSection() {
-  const { scrollYProgress } = useScroll({})
-  const progress = useTransform(scrollYProgress, [0, 1 / 6], [1, 0])
+  const containerRef = useRef(null)
+  const triggerCrossed = useScrollTrigger(containerRef, 0.5)
+
+  // Animation constants
+  const opacity = triggerCrossed ? 0 : 1
+  const scale = triggerCrossed ? 0.8 : 1
 
   return (
     <div
+      ref={containerRef}
       className={`sticky top-0 h-screen -mt-16 w-full flex flex-col items-center justify-center`}
     >
       {/*Background image*/}
@@ -51,14 +57,15 @@ function HeroSection() {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           filter: 'brightness(0.2)',
-          opacity: progress
+          opacity
         }}
       ></motion.div>
 
       <motion.div
         className={`w-full md:w-1/2 p-4 flex flex-col gap-8 items-center justify-center`}
-        style={{
-          scale: progress
+        animate={{
+          opacity,
+          scale
         }}
       >
         <h1 className={`text-6xl md:text-8xl font-light text-center`}>
@@ -81,14 +88,31 @@ function HeroSection() {
 }
 
 function ReviewsSection() {
+  const containerRef = useRef(null)
+  const triggerCrossed = useScrollTrigger(containerRef, 1.25)
+
+  // Animation constants
+  const opacity = triggerCrossed ? 0 : 1
+  const scale = triggerCrossed ? 0.9 : 1
+  const transitionConfig: Transition = {
+    type: 'tween',
+    duration: 0.5
+  }
+
   return (
-    <div
+    <motion.div
+      ref={containerRef}
       className={`sticky top-0 h-screen w-full p-4 flex flex-col gap-8 items-center justify-center`}
+      animate={{
+        opacity,
+        scale
+      }}
+      transition={transitionConfig}
     >
       <ReviewsStrip />
       <ReviewsStrip direction={'right'} />
       <ReviewsStrip />
-    </div>
+    </motion.div>
   )
 }
 
@@ -141,8 +165,8 @@ function ReviewsStrip(props: IQuestionsStripProps) {
 }
 
 interface IReviewChipProps {
-  thumbnail: String
-  review: String
+  thumbnail: string
+  review: string
 }
 
 function ReviewChip(props: IReviewChipProps) {
@@ -157,9 +181,12 @@ function ReviewChip(props: IReviewChipProps) {
 }
 
 function ProductScreenshotSection() {
+  const containerRef = useRef(null)
+
   return (
     <div
-      className={`sticky top-0 w-full h-screen p-8 flex items-center justify-center`}
+      ref={containerRef}
+      className={`top-0 w-full h-screen p-8 flex items-center justify-center`}
     >
       <Image
         src={Screenshot.src}
@@ -333,4 +360,25 @@ function CallToAction() {
       </Button>
     </div>
   )
+}
+
+function useScrollTrigger(ref: RefObject<HTMLElement>, distance: number) {
+  const elementInitialOffset = useRef<null | number>(null)
+
+  const { scrollY } = useScroll()
+  const [triggerCrossed, setTriggerCrossed] = useState(false)
+
+  useEffect(() => {
+    if (ref.current === null) return
+    elementInitialOffset.current = ref.current.offsetTop
+  }, [ref])
+
+  scrollY.on('change', val => {
+    if (elementInitialOffset.current === null) return
+    const triggerPoint =
+      elementInitialOffset.current + window.innerHeight * distance
+    setTriggerCrossed(val > triggerPoint)
+  })
+
+  return triggerCrossed
 }
