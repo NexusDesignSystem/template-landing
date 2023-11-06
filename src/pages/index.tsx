@@ -9,7 +9,12 @@ import {
   CardBody
 } from '@nexus-ds/react'
 import Marquee from 'react-fast-marquee'
-import { motion, type Transition, useScroll } from 'framer-motion'
+import {
+  motion,
+  type Transition,
+  useScroll,
+  type Variants
+} from 'framer-motion'
 
 // static assets
 import Landing from '@/assets/img/landing.jpg'
@@ -43,6 +48,11 @@ function HeroSection() {
   // Animation constants
   const opacity = triggerCrossed ? 0 : 1
   const scale = triggerCrossed ? 0.8 : 1
+  const transitionConfig: Transition = {
+    type: 'tween',
+    duration: 0.25,
+    ease: 'easeInOut'
+  }
 
   return (
     <div
@@ -56,9 +66,12 @@ function HeroSection() {
           backgroundImage: `url(${Landing.src})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          filter: 'brightness(0.2)',
+          filter: 'brightness(0.2)'
+        }}
+        animate={{
           opacity
         }}
+        transition={transitionConfig}
       ></motion.div>
 
       <motion.div
@@ -67,13 +80,45 @@ function HeroSection() {
           opacity,
           scale
         }}
+        transition={transitionConfig}
       >
-        <h1 className={`text-6xl md:text-8xl font-light text-center`}>
+        <motion.h1
+          className={`text-6xl md:text-8xl font-light text-center`}
+          initial={{
+            opacity: 0,
+            y: '-10px'
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0
+          }}
+          transition={{
+            type: 'linear',
+            ease: 'easeInOut',
+            duration: 0.5
+          }}
+        >
           The AI design assistant
-        </h1>
-        <p className={`text-2xl text-foreground-300`}>
+        </motion.h1>
+        <motion.p
+          className={`text-2xl text-center text-foreground-300`}
+          initial={{
+            opacity: 0,
+            y: '-10px'
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0
+          }}
+          transition={{
+            type: 'linear',
+            ease: 'easeInOut',
+            duration: 0.5,
+            delay: 0.25
+          }}
+        >
           Get answers to all your design needs
-        </p>
+        </motion.p>
         <Button
           radius='full'
           variant='ghost'
@@ -321,7 +366,26 @@ interface IFeatureTimelineCardProps {
 
 function FeatureTimelineCard(props: IFeatureTimelineCardProps) {
   return (
-    <div className={`w-full p-8 flex flex-col items-center gap-4`}>
+    <motion.div
+      className={`w-full md:p-8 flex flex-col items-center gap-4`}
+      initial={{
+        opacity: 0,
+        y: '-100px'
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0
+      }}
+      viewport={{
+        once: true,
+        amount: 'all'
+      }}
+      transition={{
+        type: 'linear',
+        ease: 'easeInOut',
+        duration: 0.5
+      }}
+    >
       <Image
         src={props.iconPath}
         isBlurred
@@ -333,20 +397,60 @@ function FeatureTimelineCard(props: IFeatureTimelineCardProps) {
       >
         {props.content}
       </p>
-    </div>
+    </motion.div>
   )
 }
 
 function CallToAction() {
+  // Animation constants
+  const variants: Variants = {
+    hidden: {
+      y: '150px',
+      opacity: 0,
+      transition: {
+        bounce: 0.1,
+        staggerChildren: 0.3
+      }
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        bounce: 0.1,
+        staggerChildren: 0.3
+      }
+    }
+  }
+
   return (
     <div
       className={`w-3/4 md:w-1/2 m-auto pt-24 pb-48 flex flex-col gap-8 items-center`}
     >
-      <h1
-        className={`text-6xl md:text-8xl text-primary font-light text-center`}
+      <motion.div
+        className={`flex flex-row flex-wrap gap-6 items-center justify-center`}
+        variants={variants}
+        initial='hidden'
+        whileInView='visible'
       >
-        Data on demand
-      </h1>
+        <motion.div
+          className={`text-6xl md:text-8xl text-primary font-light text-center`}
+          variants={variants}
+        >
+          Data
+        </motion.div>
+        <motion.div
+          className={`text-6xl md:text-8xl text-primary font-light text-center`}
+          variants={variants}
+        >
+          on
+        </motion.div>
+        <motion.div
+          className={`text-6xl md:text-8xl text-primary font-light text-center`}
+          variants={variants}
+        >
+          demand
+        </motion.div>
+      </motion.div>
       <p className={`text-2xl text-foreground-400 font-light text-center`}>
         Get the answers you need, when it matters
       </p>
