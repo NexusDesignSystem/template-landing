@@ -17,7 +17,7 @@ import {
 } from 'framer-motion'
 
 // static assets
-import Landing from '@/assets/img/landing.jpg'
+import Landing from '@/assets/img/landing.gif'
 import Screenshot from '@/assets/img/screenshot.jpg'
 import Logo1 from '@/assets/img/logo/1.png'
 import Logo2 from '@/assets/img/logo/2.png'
@@ -48,11 +48,6 @@ function HeroSection() {
   // Animation constants
   const opacity = triggerCrossed ? 0 : 1
   const scale = triggerCrossed ? 0.8 : 1
-  const transitionConfig: Transition = {
-    type: 'tween',
-    duration: 0.25,
-    ease: 'easeInOut'
-  }
 
   return (
     <div
@@ -66,12 +61,15 @@ function HeroSection() {
           backgroundImage: `url(${Landing.src})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          filter: 'brightness(0.2)'
+          filter: 'brightness(0.3)'
         }}
         animate={{
           opacity
         }}
-        transition={transitionConfig}
+        transition={{
+          type: 'tween',
+          duration: 1
+        }}
       ></motion.div>
 
       <motion.div
@@ -80,7 +78,11 @@ function HeroSection() {
           opacity,
           scale
         }}
-        transition={transitionConfig}
+        transition={{
+          type: 'tween',
+          duration: 0.25,
+          ease: 'easeInOut'
+        }}
       >
         <motion.h1
           className={`text-6xl md:text-8xl font-light text-center`}
