@@ -100,7 +100,7 @@ function HeroSection() {
             duration: 0.5
           }}
         >
-          The AI design assistant
+          An amazing title
         </motion.h1>
         <motion.p
           className={`text-2xl text-center text-foreground-300`}
@@ -119,7 +119,7 @@ function HeroSection() {
             delay: 0.25
           }}
         >
-          Get answers to all your design needs
+          An even more amazing subtitle for your landing page
         </motion.p>
         <Button
           radius='full'
@@ -127,7 +127,7 @@ function HeroSection() {
           color='primary'
           size='lg'
         >
-          Try Nexus Designer
+          A call to action
         </Button>
       </motion.div>
     </div>
@@ -246,7 +246,7 @@ function ProductScreenshotSection() {
 }
 
 function LogoSection() {
-  const title = 'Works with your datastack'
+  const title = 'A list of companies / brands'
   const logoImgSrcs = [
     Logo1.src,
     Logo2.src,
@@ -282,10 +282,10 @@ function FeaturesSection() {
     <div
       className={`w-full md:w-3/4 p-8 m-auto flex flex-col items-center gap-8`}
     >
-      <h1 className={`text-6xl text-primary`}>Nexus Designer</h1>
-      <h1 className={`text-5xl font-thin`}>thinks like a designer</h1>
+      <h1 className={`text-6xl text-primary`}>A Grand Setup</h1>
+      <h1 className={`text-5xl font-thin`}>A superb punchline</h1>
       <p className={`my-4 text-xl text-foreground-600 font-light`}>
-        Talks like a designer. Works like a designer
+        More about how awesome your page is
       </p>
       <FeaturesGrid />
       <FeaturesTimeline />
@@ -315,9 +315,9 @@ function FeatureCard(props: IFeatureCardProps) {
   return (
     <Card className={`${props.wide ? 'md:col-span-2' : ''}`}>
       <CardHeader className={`p-8 flex flex-col gap-4 items-center`}>
-        <h1 className={`text-2xl`}>Nuanced answers</h1>
+        <h1 className={`text-2xl`}>Feature card</h1>
         <p className={`text-foreground-500 font-light`}>
-          Nothing like a chatbot
+          Description of a feature
         </p>
       </CardHeader>
       <CardBody className={`flex flex-col gap-4 items-center`}>
@@ -334,13 +334,13 @@ function FeaturesTimeline() {
   const featureTimelineCards: IFeatureTimelineCardProps[] = [
     {
       iconPath: Logo3.src,
-      title: 'Accurate',
+      title: 'Feature',
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed vulputate mi. Morbi placerat eros at elit semper, vel placerat ante viverra.'
     },
     {
       iconPath: Logo3.src,
-      title: 'Accurate',
+      title: 'Feature',
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed vulputate mi. Morbi placerat eros at elit semper, vel placerat ante viverra.'
     }
@@ -438,23 +438,23 @@ function CallToAction() {
           className={`text-6xl md:text-8xl text-primary font-light text-center`}
           variants={variants}
         >
-          Data
+          This
         </motion.div>
         <motion.div
           className={`text-6xl md:text-8xl text-primary font-light text-center`}
           variants={variants}
         >
-          on
+          page
         </motion.div>
         <motion.div
           className={`text-6xl md:text-8xl text-primary font-light text-center`}
           variants={variants}
         >
-          demand
+          kills
         </motion.div>
       </motion.div>
       <p className={`text-2xl text-foreground-400 font-light text-center`}>
-        Get the answers you need, when it matters
+        Another call to action text
       </p>
       <Button
         radius='full'
@@ -462,7 +462,7 @@ function CallToAction() {
         color='primary'
         size='lg'
       >
-        Try Nexus Designer
+        Call to action
       </Button>
     </div>
   )

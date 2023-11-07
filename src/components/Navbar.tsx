@@ -10,7 +10,7 @@ const MyNavbar = () => {
   return (
     <Navbar className={`border-b-1 border-divider p-2`}>
       <NavbarBrand>
-        <h1>NDR</h1>
+        <h1>LOGO</h1>
       </NavbarBrand>
       <NavbarContent justify={'end'}>
         <NavbarItem>
